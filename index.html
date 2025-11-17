@@ -219,24 +219,13 @@
     <script>
         // 計算函數
         function calculateStairs(calculatorId) {
-            console.log("計算器 " + calculatorId + " 開始計算");
-            
-            // 獲取輸入值
-            var height = parseFloat(document.getElementById('height' + calculatorId).value);
-            var width = parseFloat(document.getElementById('width' + calculatorId).value);
-            var bottom = parseFloat(document.getElementById('bottom' + calculatorId).value);
-            var lowerPlatform = parseFloat(document.getElementById('lower_platform' + calculatorId).value);
-            var upperPlatform = parseFloat(document.getElementById('upper_platform' + calculatorId).value);
-            var kickboard = parseFloat(document.getElementById('kickboard' + calculatorId).value);
-            
-            console.log("輸入值:", height, width, bottom, lowerPlatform, upperPlatform, kickboard);
-            
-            // 檢查輸入是否有效
-            if (isNaN(height) || isNaN(width) || isNaN(bottom) || 
-                isNaN(lowerPlatform) || isNaN(upperPlatform) || isNaN(kickboard)) {
-                alert('請輸入有效的數值！');
-                return;
-            }
+            // 獲取輸入值，如果無效則設為0
+            var height = parseFloat(document.getElementById('height' + calculatorId).value) || 0;
+            var width = parseFloat(document.getElementById('width' + calculatorId).value) || 0;
+            var bottom = parseFloat(document.getElementById('bottom' + calculatorId).value) || 0;
+            var lowerPlatform = parseFloat(document.getElementById('lower_platform' + calculatorId).value) || 0;
+            var upperPlatform = parseFloat(document.getElementById('upper_platform' + calculatorId).value) || 0;
+            var kickboard = parseFloat(document.getElementById('kickboard' + calculatorId).value) || 0;
             
             // 計算上斜
             var triangle = Math.sqrt(Math.pow(height, 2) + Math.pow(width, 2));
@@ -245,8 +234,6 @@
             // 計算落斜
             var downSlope = upSlope + (lowerPlatform - upperPlatform) * width / height + width;
             
-            console.log("計算結果 - 上斜:", upSlope, "落斜:", downSlope);
-            
             // 顯示結果
             document.getElementById('up_slope' + calculatorId).textContent = upSlope.toFixed(2) + ' mm';
             document.getElementById('down_slope' + calculatorId).textContent = downSlope.toFixed(2) + ' mm';
@@ -254,8 +241,6 @@
         
         // 頁面加載完成後初始化
         document.addEventListener('DOMContentLoaded', function() {
-            console.log("頁面加載完成，初始化計算器");
-            
             // 綁定按鈕點擊事件
             document.getElementById('calculate1').addEventListener('click', function() {
                 calculateStairs(1);
