@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>樓梯上斜與落斜計算器</title>
-    <meta name="description" content="專業樓梯上斜與落斜計算器，精確計算樓梯尺寸和角度">
     <style>
         * {
             box-sizing: border-box;
@@ -16,7 +15,7 @@
             font-family: 'Microsoft JhengHei', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f0f2f5;
             min-height: 100vh;
             padding: 20px;
         }
@@ -29,37 +28,28 @@
         header {
             text-align: center;
             margin-bottom: 30px;
-            color: white;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         h1 {
-            font-size: 2.5em;
+            color: #2c3e50;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .subtitle {
-            font-size: 1.2em;
-            opacity: 0.9;
         }
         
         .calculators-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
+            gap: 20px;
         }
         
         .calculator {
             background: white;
-            border-radius: 15px;
+            border-radius: 10px;
             padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-        
-        .calculator:hover {
-            transform: translateY(-5px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         h2 {
@@ -67,113 +57,70 @@
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid #3498db;
-            text-align: center;
         }
         
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: bold;
             color: #2c3e50;
         }
         
         input {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             border: 2px solid #ddd;
-            border-radius: 8px;
+            border-radius: 5px;
             font-size: 16px;
-            transition: border-color 0.3s;
         }
         
         input:focus {
             outline: none;
             border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
         }
         
         button {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: #3498db;
             color: white;
             border: none;
-            padding: 14px 28px;
+            padding: 12px 20px;
             font-size: 16px;
-            border-radius: 8px;
+            border-radius: 5px;
             cursor: pointer;
             width: 100%;
-            font-weight: bold;
-            transition: all 0.3s ease;
+            margin-top: 10px;
         }
         
         button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: #2980b9;
         }
         
         .result {
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 25px;
-            border-left: 5px solid #2196f3;
+            background: #e8f4fc;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
         }
         
         .result-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            padding: 10px;
-            background: white;
-            border-radius: 6px;
-        }
-        
-        .result-label {
-            font-weight: bold;
-            color: #2c3e50;
+            margin-bottom: 10px;
         }
         
         .result-value {
-            font-size: 1.2em;
             font-weight: bold;
             color: #e74c3c;
-        }
-        
-        footer {
-            text-align: center;
-            color: white;
-            margin-top: 40px;
-            opacity: 0.8;
         }
         
         @media (max-width: 768px) {
             .calculators-container {
                 grid-template-columns: 1fr;
             }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            .calculator {
-                padding: 20px;
-            }
-        }
-        
-        .instructions {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            color: white;
-        }
-        
-        .instructions h3 {
-            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -181,144 +128,161 @@
     <div class="container">
         <header>
             <h1>樓梯上斜與落斜計算器</h1>
-            <p class="subtitle">專業建築計算工具 - 精確計算樓梯尺寸</p>
+            <p>輸入樓梯參數，自動計算上斜和落斜長度（單位：毫米）</p>
         </header>
         
-        <div class="instructions">
-            <h3>使用說明</h3>
-            <p>輸入樓梯各項參數，系統自動計算上斜和落斜長度。所有單位為毫米(mm)。</p>
-        </div>
-        
         <div class="calculators-container">
+            <!-- 計算器 1 -->
             <div class="calculator">
                 <h2>計算器 1</h2>
                 <div class="input-group">
                     <label for="height1">高 (mm):</label>
-                    <input type="number" id="height1" value="150.0" step="0.1" min="0">
+                    <input type="number" id="height1" value="150.0" step="0.1">
                 </div>
                 <div class="input-group">
                     <label for="width1">闊 (mm):</label>
-                    <input type="number" id="width1" value="250.0" step="0.1" min="0">
+                    <input type="number" id="width1" value="250.0" step="0.1">
                 </div>
                 <div class="input-group">
                     <label for="bottom1">梯底 (mm):</label>
-                    <input type="number" id="bottom1" value="200.0" step="0.1" min="0">
+                    <input type="number" id="bottom1" value="200.0" step="0.1">
                 </div>
                 <div class="input-group">
                     <label for="lower_platform1">下梯台 (mm):</label>
-                    <input type="number" id="lower_platform1" value="200.0" step="0.1" min="0">
+                    <input type="number" id="lower_platform1" value="200.0" step="0.1">
                 </div>
                 <div class="input-group">
                     <label for="upper_platform1">上梯台 (mm):</label>
-                    <input type="number" id="upper_platform1" value="200.0" step="0.1" min="0">
+                    <input type="number" id="upper_platform1" value="200.0" step="0.1">
                 </div>
                 <div class="input-group">
                     <label for="kickboard1">踢腳 (mm):</label>
-                    <input type="number" id="kickboard1" value="0.0" step="0.1" min="0">
+                    <input type="number" id="kickboard1" value="0.0" step="0.1">
                 </div>
-                <button onclick="calculateStairs(1)">計算結果</button>
+                <button id="calculate1">計算結果</button>
                 
                 <div class="result">
                     <div class="result-item">
-                        <span class="result-label">上斜:</span>
-                        <span id="up_slope1" class="result-value">0.00</span> mm
+                        <span>上斜:</span>
+                        <span id="up_slope1" class="result-value">0.00 mm</span>
                     </div>
                     <div class="result-item">
-                        <span class="result-label">落斜:</span>
-                        <span id="down_slope1" class="result-value">0.00</span> mm
+                        <span>落斜:</span>
+                        <span id="down_slope1" class="result-value">0.00 mm</span>
                     </div>
                 </div>
             </div>
             
+            <!-- 計算器 2 -->
             <div class="calculator">
                 <h2>計算器 2</h2>
                 <div class="input-group">
                     <label for="height2">高 (mm):</label>
-                    <input type="number" id="height2" value="175.0" step="0.1" min="0">
+                    <input type="number" id="height2" value="175.0" step="0.1">
                 </div>
                 <div class="input-group">
                     <label for="width2">闊 (mm):</label>
-                    <input type="number" id="width2" value="225.0" step="0.1" min="0">
+                    <input type="number" id="width2" value="225.0" step="0.1">
                 </div>
                 <div class="input-group">
                     <label for="bottom2">梯底 (mm):</label>
-                    <input type="number" id="bottom2" value="200.0" step="0.1" min="0">
+                    <input type="number" id="bottom2" value="200.0" step="0.1">
                 </div>
                 <div class="input-group">
                     <label for="lower_platform2">下梯台 (mm):</label>
-                    <input type="number" id="lower_platform2" value="225.0" step="0.1" min="0">
+                    <input type="number" id="lower_platform2" value="225.0" step="0.1">
                 </div>
                 <div class="input-group">
                     <label for="upper_platform2">上梯台 (mm):</label>
-                    <input type="number" id="upper_platform2" value="225.0" step="0.1" min="0">
+                    <input type="number" id="upper_platform2" value="225.0" step="0.1">
                 </div>
                 <div class="input-group">
                     <label for="kickboard2">踢腳 (mm):</label>
-                    <input type="number" id="kickboard2" value="25.0" step="0.1" min="0">
+                    <input type="number" id="kickboard2" value="25.0" step="0.1">
                 </div>
-                <button onclick="calculateStairs(2)">計算結果</button>
+                <button id="calculate2">計算結果</button>
                 
                 <div class="result">
                     <div class="result-item">
-                        <span class="result-label">上斜:</span>
-                        <span id="up_slope2" class="result-value">0.00</span> mm
+                        <span>上斜:</span>
+                        <span id="up_slope2" class="result-value">0.00 mm</span>
                     </div>
                     <div class="result-item">
-                        <span class="result-label">落斜:</span>
-                        <span id="down_slope2" class="result-value">0.00</span> mm
+                        <span>落斜:</span>
+                        <span id="down_slope2" class="result-value">0.00 mm</span>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <footer>
-            <p>© 2024 樓梯計算器 | 基於專業建築公式計算</p>
-        </footer>
     </div>
 
     <script>
+        // 計算函數
         function calculateStairs(calculatorId) {
-            // 獲取輸入值
-            const height = parseFloat(document.getElementById(height${calculatorId}).value);
-            const width = parseFloat(document.getElementById(width${calculatorId}).value);
-            const bottom = parseFloat(document.getElementById(bottom${calculatorId}).value);
-            const lowerPlatform = parseFloat(document.getElementById(lower_platform${calculatorId}).value);
-            const upperPlatform = parseFloat(document.getElementById(upper_platform${calculatorId}).value);
-            const kickboard = parseFloat(document.getElementById(kickboard${calculatorId}).value);
+            console.log("計算器 " + calculatorId + " 開始計算");
             
-            // 驗證輸入
-            if ([height, width, bottom, lowerPlatform, upperPlatform, kickboard].some(isNaN)) {
+            // 獲取輸入值
+            var height = parseFloat(document.getElementById('height' + calculatorId).value);
+            var width = parseFloat(document.getElementById('width' + calculatorId).value);
+            var bottom = parseFloat(document.getElementById('bottom' + calculatorId).value);
+            var lowerPlatform = parseFloat(document.getElementById('lower_platform' + calculatorId).value);
+            var upperPlatform = parseFloat(document.getElementById('upper_platform' + calculatorId).value);
+            var kickboard = parseFloat(document.getElementById('kickboard' + calculatorId).value);
+            
+            console.log("輸入值:", height, width, bottom, lowerPlatform, upperPlatform, kickboard);
+            
+            // 檢查輸入是否有效
+            if (isNaN(height) || isNaN(width) || isNaN(bottom) || 
+                isNaN(lowerPlatform) || isNaN(upperPlatform) || isNaN(kickboard)) {
                 alert('請輸入有效的數值！');
                 return;
             }
             
             // 計算上斜
-            const upSlope = (Math.sqrt(Math.pow(height, 2) + Math.pow(width, 2)) / height * bottom - 
-                            width / height * lowerPlatform + kickboard);
+            var triangle = Math.sqrt(Math.pow(height, 2) + Math.pow(width, 2));
+            var upSlope = (triangle / height * bottom) - (width / height * lowerPlatform) + kickboard;
             
             // 計算落斜
-            const downSlope = upSlope + (lowerPlatform - upperPlatform) * width / height + width;
+            var downSlope = upSlope + (lowerPlatform - upperPlatform) * width / height + width;
+            
+            console.log("計算結果 - 上斜:", upSlope, "落斜:", downSlope);
             
             // 顯示結果
-            document.getElementById(up_slope${calculatorId}).textContent = upSlope.toFixed(2);
-            document.getElementById(down_slope${calculatorId}).textContent = downSlope.toFixed(2);
+            document.getElementById('up_slope' + calculatorId).textContent = upSlope.toFixed(2) + ' mm';
+            document.getElementById('down_slope' + calculatorId).textContent = downSlope.toFixed(2) + ' mm';
         }
         
-        // 頁面加載時自動計算
-        window.onload = function() {
+        // 頁面加載完成後初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("頁面加載完成，初始化計算器");
+            
+            // 綁定按鈕點擊事件
+            document.getElementById('calculate1').addEventListener('click', function() {
+                calculateStairs(1);
+            });
+            
+            document.getElementById('calculate2').addEventListener('click', function() {
+                calculateStairs(2);
+            });
+            
+            // 綁定輸入框變化事件
+            var inputs1 = document.querySelectorAll('#height1, #width1, #bottom1, #lower_platform1, #upper_platform1, #kickboard1');
+            inputs1.forEach(function(input) {
+                input.addEventListener('input', function() {
+                    calculateStairs(1);
+                });
+            });
+            
+            var inputs2 = document.querySelectorAll('#height2, #width2, #bottom2, #lower_platform2, #upper_platform2, #kickboard2');
+            inputs2.forEach(function(input) {
+                input.addEventListener('input', function() {
+                    calculateStairs(2);
+                });
+            });
+            
+            // 初始計算
             calculateStairs(1);
             calculateStairs(2);
-        };
-        
-        // 輸入變化時自動重新計算
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('input', function() {
-                const id = this.id;
-                const calculatorId = id.replace(/[^0-9]/g, '');
-                if (calculatorId) {
-                    calculateStairs(calculatorId);
-                }
-            });
         });
     </script>
 </body>
